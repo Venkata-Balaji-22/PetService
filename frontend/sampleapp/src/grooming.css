@@ -1,0 +1,27 @@
+.grooming-card {
+    max-width: 330px; /* Set a max width for each card */
+    margin: 10px; /* Space between cards */
+    padding: 15px; /* Inner spacing */
+    border: 1px solid #ccc; /* Border around the card */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #f9f9f9; /* Background color */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    display: inline-block; /* Align cards inline */
+    text-align: center; /* Center align text */
+}
+
+.grooming-card img {
+    width: 100%; /* Responsive image width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners for image */
+}
+
+.grooming-card h3 {
+    font-size: 1.5rem; /* Title font size */
+    margin: 10px 0; /* Space around the title */
+}
+
+.grooming-card p {
+    font-size: 1rem; /* Description font size */
+    color: #555; /* Dark gray text color */
+}

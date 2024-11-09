@@ -1,0 +1,107 @@
+/* Signup.css */
+
+/* Container styling for the signup form */
+.signup-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px; /* Adjusted for better appearance */
+    text-align: center;
+    margin: auto; /* Centers the component */
+    position: relative; /* Allows for absolute positioning of elements */
+  }
+  
+  /* Title styling */
+  .signup-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #4a4a4a; /* Darker color for better readability */
+    font-weight: bold; /* Bold title */
+    letter-spacing: 0.5px; /* Slight letter spacing for aesthetics */
+  }
+  
+  /* Form group styling */
+  .form-group {
+    margin-bottom: 1.5rem; /* Spacing between form groups */
+    text-align: left; /* Aligns label and input to the left */
+  }
+  
+  /* Label styling */
+  .form-group label {
+    font-size: 1.1rem;
+    color: #555; /* Slightly lighter color for labels */
+  }
+  
+  /* Input field styling */
+  .form-group input {
+    width: 100%; /* Full width for input fields */
+    padding: 12px; /* Padding for input fields */
+    border-radius: 25px; /* Rounded corners */
+    border: 1px solid #ccc; /* Light border */
+    background: #f8f8f8; /* Light background for inputs */
+    font-size: 1rem; /* Font size */
+    margin-top: 8px; /* Spacing above inputs */
+    transition: border 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+  }
+  
+  /* Focus state for input fields */
+  .form-group input:focus {
+    outline: none; /* Removes default outline */
+    border-color: #6ab04c; /* Green border on focus */
+    box-shadow: 0 0 5px rgba(106, 176, 76, 0.5); /* Soft shadow */
+  }
+  
+  /* Button styling */
+  .signup-btn {
+    background: linear-gradient(90deg, #6ab04c, #badc58); /* Gradient background */
+    color: white; /* Text color */
+    border: none; /* Removes default border */
+    padding: 12px 0; /* Padding for button */
+    width: 100%; /* Full width for button */
+    border-radius: 25px; /* Rounded corners */
+    font-size: 1.2rem; /* Font size */
+    font-weight: bold; /* Bold text */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    transition: background 0.4s ease; /* Smooth transition */
+    margin-top: 1rem; /* Spacing above button */
+  }
+  
+  /* Button hover effect */
+  .signup-btn:hover {
+    background: linear-gradient(90deg, #badc58, #6ab04c); /* Reversed gradient */
+  }
+  
+  /* Text for signup prompt */
+  .signup-text {
+    margin-top: 1.5rem; /* Spacing above text */
+    font-size: 1rem; /* Font size for text */
+    color: #666; /* Text color */
+  }
+  
+  /* Link styling */
+  .signup-text a {
+    color: #6ab04c; /* Green color for links */
+    font-weight: bold; /* Bold text */
+    text-decoration: none; /* Removes underline */
+    transition: color 0.3s ease; /* Smooth transition for hover */
+  }
+  
+  /* Link hover effect */
+  .signup-text a:hover {
+    color: #badc58; /* Lighter green on hover */
+  }
+  
+  /* Error message styling */
+  .error-message {
+    color: #e74c3c; /* Red color for errors */
+    margin-top: 1rem; /* Spacing above error message */
+  }
+  
+  /* Success message styling */
+  .success-message {
+    color: #27ae60; /* Green color for success */
+    margin-top: 1rem; /* Spacing above success message */
+  }
+  
