@@ -11,7 +11,7 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://petservice-1.onrender.com/Signup', {
+      const response = await fetch('https://petservice-wx2h.onrender.com/api/users/signup', {
         
         method: 'POST',
         headers: {
