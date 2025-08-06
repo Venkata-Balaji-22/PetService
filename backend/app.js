@@ -12,10 +12,11 @@ const app = express();
 
 // Middleware
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://your-frontend.onrender.com'], // ✅ Allow both dev and deployed frontend
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
+  origin: ['http://localhost:3000', 'https://petservice-frontend.onrender.com'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
 }));
+
 
 app.use(bodyParser.json());
 
