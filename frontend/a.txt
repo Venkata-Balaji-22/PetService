@@ -1,1 +1,0 @@
-REACT_APP_API_URL=https://petservice-wx2h.onrender.com
