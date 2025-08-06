@@ -6,6 +6,7 @@
   "scripts": {
     "predeploy":"npm run build",
     "deploy":"gh-pages -d build",
+    "react-scripts": "^5.0.1",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start": "node server.js",
