@@ -19,7 +19,7 @@ const FeedbackForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/api/feedback', { // Update the endpoint as needed
+            const response = await fetch('https://petservice-wx2h.onrender.com/api/feedback', { // Update the endpoint as needed
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
