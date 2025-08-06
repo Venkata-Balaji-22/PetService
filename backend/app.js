@@ -12,7 +12,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://PetService1.onrender.com'],
+  origin: ['http://localhost:3000', 'https://petservice-frontend.onrender.com'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
@@ -31,10 +31,10 @@ mongoose.connect(dbURI, {
 .catch(err => console.error('MongoDB connection error:', err));
 
 // Routes
-app.use('/api/users', userRoutes);
-app.use('/api/adoption', adoptionRoutes);
-app.use('/api/bookings', bookingRoutes);
-app.use('/api/feedback', feedbackRoutes);
+app.use('https://petservice-wx2h.onrender.com/api/users', userRoutes);
+app.use('https://petservice-wx2h.onrender.com/api/adoption', adoptionRoutes);
+app.use('https://petservice-wx2h.onrender.com/api/bookings', bookingRoutes);
+app.use('https://petservice-wx2h.onrender.com/api/feedback', feedbackRoutes);
 
 // Centralized error handling
 app.use((err, req, res, next) => {
