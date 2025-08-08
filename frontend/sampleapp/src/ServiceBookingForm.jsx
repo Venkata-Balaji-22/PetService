@@ -1,18 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect  } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 import './ServiceBooking.css'; // Import CSS for styling
 
 const BookingForm = () => {
+    const locationi = useLocation();
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [serviceType, setServiceType] = useState('');
     const [location, setLocation] = useState('');
     const [popupMessage, setPopupMessage] = useState('');
     const [popupVisible, setPopupVisible] = useState(false);
+    useEffect(() => {
+        if (locationi.state && locationi.state.serviceType) {
+            setServiceType(locationi.state.serviceType);
+        }
+    }, [locationi.state]);
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const bookingData = {
             name,
             phone,
@@ -21,11 +28,10 @@ const BookingForm = () => {
         };
 
         try {
-            const response = await axios.post('https://petservice-wx2h.onrender.com/api/bookings', bookingData);
-            
+            const response = await axios.post('http://localhost:5000/api/bookings', bookingData);
             console.log('Booking request successful:', response.data);
-            setPopupMessage('Booking request submitted successfully!');
-            setPopupVisible(true);
+            alert('Booking request submitted successfully!');
+            // setPopupVisible(true);
             // Clear form
             setName('');
             setPhone('');
@@ -55,16 +61,13 @@ const BookingForm = () => {
                 </div>
                 <div>
                     <label>Type of Service:</label>
-                    <select value={serviceType} onChange={(e) => setServiceType(e.target.value)} required>
-                        <option value="">Select a service</option>
-                        <option value="Vaccination">Vaccination</option>
-                        <option value="Checkup">General Checkup</option>
-                        <option value="Emergency Care">Emergency Care</option>
-                        <option value="Dental Care">Dental Care</option>
-                        <option value="Spaying/Neutering">Spaying & Neutering</option>
-                        <option value="Microchipping">Microchipping</option>
-                        <option value="Grooming Consultation">Grooming Consultation</option>
-                    </select>
+                    <input
+                        type="text"
+                        value={serviceType}
+                        onChange={(e) => setServiceType(e.target.value)}
+                        required
+                        readOnly
+      />
                 </div>
                 <div>
                     <label>Location:</label>
