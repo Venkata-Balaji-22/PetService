@@ -1,5 +1,5 @@
-.content {
-    display: none; /* Hide all sections by default */
+/* .content {
+    
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8);
     margin: 20px;
@@ -18,7 +18,7 @@
 }
 
 .scrolling-images img {
-    width: 33.33%; /* Divide the width equally for 3 images */
+    width: 33.33%; 
 }
 
 @keyframes scroll {
@@ -27,6 +27,68 @@
     }
     100% {
         transform: translateX(-100%);
+    }
+}
+ */
+ /* Hide all sections by default */
+.content {
+    display: none;
+    padding: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 2rem auto;
+    border-radius: 10px;
+    max-width: 1000px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Scroll container hides overflow */
+.scrolling-container {
+    width: 100%;
+    overflow: hidden;
+    margin: 2rem 0;
+}
+
+/* Flex container for images */
+.scrolling-images {
+    display: flex;
+    animation: scroll 20s linear infinite;
+    gap: 1rem;
+}
+
+/* Images are responsive and consistent */
+.scrolling-images img {
+    width: auto;
+    height: 200px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Animation for infinite scroll */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .content {
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .scrolling-images img {
+        height: 150px;
+    }
+}   
+
+@media (max-width: 480px) {
+    .scrolling-images img {
+        height: 100px;
     }
 }
 
