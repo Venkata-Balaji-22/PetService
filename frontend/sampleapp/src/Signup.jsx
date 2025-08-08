@@ -6,13 +6,14 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      const response = await fetch('https://petservice-wx2h.onrender.com/api/users/signup', {
-        
+      const response = await fetch('http://localhost:5000/api/users/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,6 +37,8 @@ const Signup = () => {
     } catch (error) {
       setErrorMessage('Something went wrong. Please try again.');
       setSuccessMessage('');
+    }finally {
+      setLoading(false); // 👈 Hide spinner
     }
   };
 
@@ -70,7 +73,7 @@ const Signup = () => {
             required 
           />
         </div>
-        <button type="submit" className="signup-btn">Signup</button>
+        <button type="submit" className="signup-btn"disabled={loading}>{loading ? 'Signing up...' : 'Signup'}</button>
         <p className="signup-text">Already have an Account? <a href="/">Login</a></p>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
