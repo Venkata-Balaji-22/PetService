@@ -1,15 +1,21 @@
 import './Pets.css'
+import { useNavigate } from 'react-router-dom';
 
-function Pets(props){
+function Pets({img,name,age,desc,link}){
+  const navigate = useNavigate();
+  const handleBookNow=()=>{
+    navigate('/form', { state: { setFormDatapetName: name } })
+  };
   return(
     <>
     <div className="card">
       <div className='card1'>
-    <img src={props.img} />
-    <h3>{props.name}</h3>
-    <p>{props.age}</p>
-    <p>{props.desc}</p>
-    <a className='petbtn' href={props.link}>Book now</a>
+    <img src={img} alt={name} />
+    <h3>{name}</h3>
+    <p>{age}</p>
+    <p>{desc}</p>
+    {/* <a className='petbtn' href={props.link}>Book now</a> */}
+    <button className='petbtn'type="button" onClick={handleBookNow}>Book Now</button>
     </div>
     </div>
     </>
