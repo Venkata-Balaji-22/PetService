@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const GroomingBookingForm = () => {
+    const locationi=useLocation();
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [serviceType, setServiceType] = useState('');
     const [location, setLocation] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    
+useEffect(() => {
+    if (locationi.state && locationi.state.serviceType) {
+        setServiceType(locationi.state.serviceType);
+    }
+}, [locationi.state]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,7 +28,7 @@ const GroomingBookingForm = () => {
         };
 
         try {
-            const response = await axios.post('https://petservice-wx2h.onrender.com/api/bookings', bookingData);
+            const response = await axios.post('http://localhost:5000/api/bookings', bookingData);
             console.log('Booking request successful:', response.data);
             setSuccessMessage('Your grooming service request has been submitted successfully!'); // Show success message
             // Clear form fields
@@ -56,22 +65,13 @@ const GroomingBookingForm = () => {
                 </div>
                 <div className="form-group">
                     <label>Type of Service:</label>
-                    <select
-                        value={serviceType}
-                        onChange={(e) => setServiceType(e.target.value)}
-                        required
-                    >
-                        <option value="">Select a service</option>
-                        <option value="Basic Bath">Basic Bath</option>
-                        <option value="Nail Trimming">Nail Trimming</option>
-                        <option value="Full Haircut">Full Haircut</option>
-                        <option value="Ear Cleaning">Ear Cleaning</option>
-                        <option value="Teeth Cleaning">Teeth Cleaning</option>
-                        <option value="Ear Hair Removal">Ear Hair Removal</option>
-                        <option value="Flea & Tick Treatment">Flea & Tick Treatment</option>
-                        <option value="De-Shedding Treatment">De-Shedding Treatment</option>
-                        <option value="Spa Treatment">Spa Treatment</option>
-                    </select>
+                    <input
+        type="text"
+        value={serviceType}
+        onChange={(e) => setServiceType(e.target.value)}
+        required
+        readOnly
+      />
                 </div>
                 <div className="form-group">
                     <label>Location:</label>
