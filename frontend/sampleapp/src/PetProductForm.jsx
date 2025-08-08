@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const PetProductForm = () => {
+    const locationi = useLocation();
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [serviceType, setServiceType] = useState('');
     const [location, setLocation] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
+    
+
+useEffect(() => {
+    if (locationi.state && locationi.state.serviceType) {
+        setServiceType(locationi.state.serviceType);
+    }
+}, [locationi.state]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,7 +28,7 @@ const PetProductForm = () => {
         };
 
         try {
-            const response = await axios.post('https://petservice-wx2h.onrender.com/api/bookings', bookingData);
+            const response = await axios.post('http://localhost:5000/api/bookings', bookingData);
             console.log('Booking request successful:', response.data);
             setSuccessMessage('Your Product Booking request has been submitted successfully!'); // Show success message
             // Clear form fields
@@ -35,6 +44,11 @@ const PetProductForm = () => {
     return (
         <div className="adoption-form-container">
             <h2>Product Booking Form</h2>
+            {serviceType && (
+                <div className="selected-service-message">
+                    <strong>Booking for:</strong> {serviceType}
+                </div>
+            )}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Name:</label>
@@ -55,26 +69,14 @@ const PetProductForm = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Type of Service:</label>
-                    <select
-                        value={serviceType}
-                        onChange={(e) => setServiceType(e.target.value)}
-                        required
-                    >
-                        <option value="">Select a Product</option>
-                        <option value="Premium Dog Food">Basic Bath</option>
-                        <option value="Cat Scratching Post">Cat Scratching Post</option>
-                        <option value="Pet Bed">Pet Bed</option>
-                        <option value="Dog Leash">Dog Leash</option>
-                        <option value="Cat Litter Box">Cat Litter Box</option>
-                        <option value="Pet Grooming Kit">Pet Grooming Kit</option>
-                        <option value="Automatic Pet Feeder">Automatic Pet Feeder</option>
-                        <option value="Collapsible Pet Travel Carrier">Collapsible Pet Travel Carrier</option>
-                        <option value="Pet Shampoo">Pet Shampoo</option>
-                        <option value="Dog Toys Set">Dog Toys Set</option>
-                        <option value="Water Fountain for Pets">Water Fountain for Pets</option>
-                        <option value="Catnip Toys">Catnip Toys</option>
-                    </select>
+                    <label>Selected Product:</label>
+      <input
+        type="text"
+        value={serviceType}
+        onChange={(e) => setServiceType(e.target.value)}
+        required
+        readOnly
+      />
                 </div>
                 <div className="form-group">
                     <label>Location:</label>
