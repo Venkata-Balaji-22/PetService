@@ -3,42 +3,47 @@ import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 const Login = () => {
-  const [identifier, setIdentifier] = useState(''); // This will hold either the email or username
+  const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [loading, setLoading] = useState(false); // 👈 NEW loading state
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true); // 👈 Show spinner
+    setErrorMessage('');
+    setSuccessMessage('');
+
     try {
       const response = await fetch('https://petservice-wx2h.onrender.com/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: identifier, username: identifier, password }), // Send identifier as both email and username
+        body: JSON.stringify({ email: identifier, username: identifier, password }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         setSuccessMessage(data.message);
-        setErrorMessage('');
-        navigate('/home'); 
+        navigate('/home');
       } else {
-        setErrorMessage(data.message);
-        setSuccessMessage('');
+        setErrorMessage(data.message || 'Login failed');
       }
     } catch (error) {
       setErrorMessage('Something went wrong. Please try again.');
-      setSuccessMessage('');
+    } finally {
+      setLoading(false); // 👈 Hide spinner
     }
   };
 
   return (
     <div className="login-container">
       <h2 className="login-title">Welcome Back</h2>
+
       <form onSubmit={handleLogin} className="login-form">
         <div className="form-group">
           <label htmlFor="identifier">Email or Username</label>
@@ -62,11 +67,18 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit" className="login-btn">Login</button>
+
+        <button type="submit" className="login-btn" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
+        </button>
+
+        {loading && <div className="spinner"></div>}
+
         <p className="signup-text">
-          Don’t have an account? <a href="/Signup" className="signup-link">Signup</a>
+          Don't have an account? <a href="/Signup" className="signup-link">Signup</a>
         </p>
       </form>
+
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       {successMessage && <p className="success-message">{successMessage}</p>}
     </div>
