@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './AdoptionForm.css'
 
 const AdoptionForm = () => {
+    const locationi=useLocation();
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -9,7 +11,14 @@ const AdoptionForm = () => {
         address: '',
         reason: '',
     });
-
+  useEffect(() => {
+    if (locationi.state && locationi.state.setFormDatapetName) {
+        setFormData((prevData) => ({
+            ...prevData,
+            petName: locationi.state.setFormDatapetName, // ✅ Proper update
+        }));
+    }
+}, [locationi.state]);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -21,7 +30,7 @@ const AdoptionForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://petservice-wx2h.onrender.com/api/adoption', { // Ensure this matches your backend endpoint
+            const response = await fetch('http://localhost:5000/api/adoption', { // Ensure this matches your backend endpoint
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -74,8 +83,9 @@ const AdoptionForm = () => {
                         id="petName"
                         name="petName"
                         value={formData.petName}
-                        onChange={handleChange}
-                        required
+                        // onChange={handleChange}
+                        // required
+                        readOnly
                     />
                 </div>
                 <div className="form-group">
