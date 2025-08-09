@@ -16,7 +16,7 @@ const Archievements = () => {
             <section className="achievement-gallery">
                 <article className="achievement-item">
                     <img 
-                        src="petAward.jpg" 
+                        src="https://www.petage.com/wp-content/uploads/2023/10/Pet-Innovation-Award2023-blog-scaled-1-875x548.jpg" 
                         alt="Awarded Best Pet Care in 2023" 
                     />
                     <p>Awarded Best Pet Care in 2023</p>
