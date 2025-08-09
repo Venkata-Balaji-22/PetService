@@ -28,7 +28,7 @@ const BookingForm = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/api/bookings', bookingData);
+            const response = await axios.post('https://petservice-wx2h.onrender.com/api/bookings', bookingData);
             console.log('Booking request successful:', response.data);
             alert('Booking request submitted successfully!');
             // setPopupVisible(true);
