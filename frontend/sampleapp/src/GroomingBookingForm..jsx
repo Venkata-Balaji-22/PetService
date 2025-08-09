@@ -28,7 +28,7 @@ useEffect(() => {
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/api/bookings', bookingData);
+            const response = await axios.post('https://petservice-wx2h.onrender.com/api/bookings', bookingData);
             console.log('Booking request successful:', response.data);
             setSuccessMessage('Your grooming service request has been submitted successfully!'); // Show success message
             // Clear form fields
